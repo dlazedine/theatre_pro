@@ -1,10 +1,12 @@
 {
-  "name": "react-example",
+  "name": "theatre_pro",
   "private": true,
-  "version": "0.0.0",
+  "version": "0.1.0",
+  "description": "النسخة المطوّرة من المسرح الاستعراضي مع كل الميزات المطلوبة",
   "type": "module",
   "scripts": {
     "dev": "vite --port=3000 --host=0.0.0.0",
+    "start": "npm run dev",
     "build": "vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist server.js",
