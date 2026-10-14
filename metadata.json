@@ -1,0 +1,6 @@
+{
+  "name": "الخزانة المسرحية - نص مسرحي احترافي",
+  "description": "منصة ونموذج احترافي متكامل للنصوص المسرحية بالمعايير الإخراجية، وأدوات بروفة الممثلين، وتوزيع الفضاء المسرحي، والتصدير الطباعي.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
