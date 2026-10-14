@@ -1,21 +1,1116 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>الخزانة المسرحية - نص مسرحي احترافي</title>
-    <meta name="description" content="منصة ونموذج احترافي متكامل للنصوص المسرحية بالمعايير الإخراجية، وأدوات بروفة الممثلين، وتوزيع الفضاء المسرحي، والتصدير الطباعي." />
-    <meta property="og:title" content="الخزانة المسرحية - نص مسرحي احترافي" />
-    <meta property="og:description" content="منصة ونموذج احترافي متكامل للنصوص المسرحية بالمعايير الإخراجية، وأدوات بروفة الممثلين، وتوزيع الفضاء المسرحي، والتصدير الطباعي." />
-    <meta property="og:type" content="website" />
-    <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Amiri:ital,wght@0,400;0,700;1,400;1,700&family=Tajawal:wght@300;400;500;700;800&family=Cinzel:wght@600;700&display=swap" rel="stylesheet">
-  </head>
-  <body class="bg-[#121010] text-[#E8DFD4] font-['Tajawal',sans-serif] antialiased selection:bg-[#9E2A2B] selection:text-white">
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
-</html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>الخزانة المسرحية · منصة دراماتورجية احترافية</title>
+<style>
+:root{
+  --gold:#c9a227; --gold-2:#e6c757; --cream:#f4ecd8; --ink:#0a0a0c;
+  --velvet:#5b0e14; --velvet-2:#2a1210;
+  --joy:#c9a227; --anger:#b71c1c; --sad:#1e5f8f;
+  --drama:#6a2c8f; --suspense:#0d4a2b; --mystery:#1c5f6e;
+}
+*{box-sizing:border-box;font-family:"Amiri","Cairo","Times New Roman",serif}
+html,body{margin:0;padding:0;min-height:100%;color:var(--cream);background:#07070a}
+body{
+  background:
+    radial-gradient(circle at 50% -15%, rgba(201,162,39,.22), transparent 45%),
+    linear-gradient(160deg,#07070a,#140812 45%,#1a0a1e);
+  transition:background .9s ease;
+  font-size:16px;
+}
+/* ====== أنماط القراءة ====== */
+body.mode-velvet{ background:
+  radial-gradient(circle at 50% -15%, rgba(201,162,39,.25), transparent 45%),
+  linear-gradient(160deg,#07070a,#3a0a12 45%,#2a1210); }
+body.mode-parchment{ background:#e8dcc0; color:#2a1e0e; }
+body.mode-parchment .script-body,
+body.mode-parchment .side-card,
+body.mode-parchment .stage-card{ background:#f6ecd2; color:#2a1e0e; border-color:#a8895a; }
+body.mode-parchment h1, body.mode-parchment h2, body.mode-parchment h3{ color:#5b3a12; }
+body.mode-print{ background:#ffffff; color:#111; }
+body.mode-print .script-body,
+body.mode-print .side-card,
+body.mode-print .stage-card{ background:#fff; color:#111; border-color:#333; }
+body.mode-print h1, body.mode-print h2, body.mode-print h3{ color:#111; }
 
+/* ====== الستارة + البقعة ====== */
+.curtain{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.35;
+  background:repeating-linear-gradient(90deg,rgba(0,0,0,.55) 0 22px,rgba(255,255,255,.03) 22px 44px);}
+.curtain::before,.curtain::after{content:"";position:absolute;top:0;bottom:0;width:60px;
+  background:linear-gradient(180deg,rgba(91,14,20,.9),rgba(42,18,16,.95));
+  box-shadow:0 0 60px rgba(0,0,0,.9) inset;}
+.curtain::before{right:0}
+.curtain::after{left:0}
+.spot{position:fixed;top:-30%;left:50%;transform:translateX(-50%);width:80vw;height:130vh;
+  pointer-events:none;z-index:0;transition:background .8s ease;
+  background:radial-gradient(ellipse,rgba(201,162,39,.18),transparent 60%);}
+body.mode-print .curtain, body.mode-print .spot{display:none}
+
+/* ====== الترويسة ====== */
+header{position:relative;z-index:2;text-align:center;padding:34px 16px 8px}
+h1{margin:0;color:var(--gold);font-size:clamp(26px,4.2vw,46px);letter-spacing:2px;
+  text-shadow:0 0 22px rgba(201,162,39,.55)}
+.sub{opacity:.85;margin-top:6px;font-size:1rem;letter-spacing:1px}
+
+/* ====== الحاوية ====== */
+.container{position:relative;z-index:2;max-width:1280px;margin:auto;padding:0 16px 80px}
+.card{background:rgba(12,8,12,.78);border:1px solid rgba(201,162,39,.4);border-radius:18px;
+  padding:22px;margin-bottom:22px;box-shadow:0 18px 45px rgba(0,0,0,.6);backdrop-filter:blur(6px)}
+h2{color:var(--gold);margin:0 0 14px;font-size:1.35rem;letter-spacing:1px;display:flex;align-items:center;gap:10px}
+h2 .badge{background:rgba(201,162,39,.15);border:1px solid var(--gold);color:var(--gold);
+  padding:3px 12px;border-radius:30px;font-size:.8rem;letter-spacing:0}
+h3{color:var(--gold-2);margin:14px 0 8px;font-size:1.05rem}
+p{line-height:1.85}
+label{display:block;margin:12px 0 6px;color:var(--gold);font-size:.95rem;letter-spacing:.5px}
+input,textarea,select{width:100%;padding:11px 13px;border-radius:10px;
+  border:1px solid rgba(201,162,39,.4);background:rgba(0,0,0,.45);color:var(--cream);
+  font-size:15px;font-family:inherit;line-height:1.7}
+textarea{min-height:180px;resize:vertical}
+input:focus,textarea:focus,select:focus{outline:2px solid rgba(201,162,39,.35)}
+
+/* ====== الأزرار ====== */
+button,.btn{margin:6px 4px 6px 0;padding:10px 18px;border:none;border-radius:999px;cursor:pointer;
+  color:#1a1206;font-weight:bold;background:linear-gradient(135deg,#f7e08a,var(--gold));
+  box-shadow:0 8px 22px rgba(201,162,39,.28);transition:.25s;font-size:14px;font-family:inherit;
+  letter-spacing:.5px}
+button:hover{transform:translateY(-2px)}
+button.sm{padding:7px 14px;font-size:13px}
+.secondary{background:linear-gradient(135deg,#cfd8dc,#90a4ae);color:#102027}
+.ghost{background:transparent;color:var(--gold);border:1px solid var(--gold);box-shadow:none}
+.ghost:hover{background:rgba(201,162,39,.15)}
+.danger{background:linear-gradient(135deg,#e57373,#b71c1c);color:#fff}
+.active-btn{outline:2px solid var(--gold-2)}
+
+/* ====== الشبكات ====== */
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.grid-3{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+
+/* ====== بطاقة العمل ====== */
+.work-card{display:grid;grid-template-columns:1fr;gap:18px}
+@media (min-width:900px){ .work-card{grid-template-columns:1.2fr 1fr} }
+.work-meta{background:rgba(0,0,0,.4);border:1px dashed rgba(201,162,39,.45);border-radius:14px;padding:16px}
+.work-meta dt{color:var(--gold);font-weight:bold;margin-top:8px}
+.work-meta dd{margin:2px 0 0;line-height:1.7;color:var(--cream)}
+
+/* ====== الشخصيات ====== */
+.chars{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px}
+.char{background:linear-gradient(145deg,rgba(91,14,20,.45),rgba(42,18,48,.65));
+  border:1px solid rgba(201,162,39,.3);border-radius:14px;padding:14px}
+.char h4{color:var(--gold-2);margin:0 0 6px;font-size:1rem}
+.char p{margin:4px 0;font-size:.92rem;line-height:1.6}
+.char .voice{color:#a8e6cf;font-style:italic}
+.char .drive{color:#ffd3a5}
+.char .pos{color:#b3d9ff}
+
+/* ====== النص المسرحي ====== */
+.script-shell{display:grid;grid-template-columns:1fr;gap:18px}
+@media (min-width:1100px){ .script-shell{grid-template-columns:1.6fr .9fr} }
+
+.script-body{background:rgba(0,0,0,.55);border:1px solid rgba(201,162,39,.4);
+  border-radius:16px;padding:22px;font-size:1.05rem;line-height:2;min-height:420px;
+  white-space:pre-wrap;font-family:"Amiri","Cairo",serif;color:var(--cream)}
+body.mode-parchment .script-body{background:#f6ecd2;color:#2a1e0e;font-family:"Amiri",serif;
+  border-color:#a8895a;box-shadow:inset 0 0 60px rgba(120,80,20,.25)}
+body.mode-print .script-body{background:#fff;color:#000;border:1px solid #333;font-family:"Amiri",serif}
+
+.scene-title{color:var(--gold-2);font-weight:bold;display:block;margin:18px 0 6px;
+  border-bottom:1px dashed rgba(201,162,39,.5);padding-bottom:6px;font-size:1.15rem}
+.didascalie{color:#a8c8e8;font-style:italic;display:block;margin:6px 0;
+  padding:6px 10px;background:rgba(30,95,143,.12);border-right:3px solid var(--sad);border-radius:8px}
+body.mode-parchment .didascalie{color:#5a3a12;background:rgba(140,100,40,.12);border-right-color:#8a6a2a}
+body.mode-print .didascalie{color:#333;background:#f3f3f3;border-right-color:#666}
+
+.line{display:block;margin:8px 0;padding:6px 12px;border-radius:8px;position:relative}
+.line .who{color:var(--gold-2);font-weight:bold;margin-left:6px}
+.line.character-a{border-right:3px solid var(--gold)}
+.line.character-b{border-right:3px solid var(--drama)}
+.line.character-c{border-right:3px solid var(--suspense)}
+.line .sub{display:none;color:#ffb3c1;font-size:.88rem;font-style:italic;margin-top:4px;
+  padding:4px 10px;background:rgba(183,28,28,.12);border-radius:6px}
+body.show-subtext .line .sub{display:block}
+body.hide-didascalie .didascalie{display:none}
+
+/* ====== أدوات جانبية ====== */
+.side-card{background:rgba(0,0,0,.5);border:1px solid rgba(201,162,39,.35);
+  border-radius:16px;padding:16px;margin-bottom:14px}
+.side-card h3{margin-top:0;font-size:1rem}
+
+/* ====== محاكي الخشبة ====== */
+.stage-card{background:linear-gradient(160deg,#0b0b10,#1a0a12);border:1px solid rgba(201,162,39,.4);
+  border-radius:16px;padding:16px;position:relative}
+.stage{
+  position:relative;width:100%;aspect-ratio:16/9;border-radius:12px;overflow:hidden;
+  background:radial-gradient(ellipse at 50% 120%, #2a1a10, #0a0608 80%);
+  border:2px solid var(--gold);box-shadow:0 0 40px rgba(201,162,39,.2) inset;
+}
+.stage::before{content:"";position:absolute;left:0;right:0;top:0;height:22%;
+  background:linear-gradient(180deg,rgba(91,14,20,.6),transparent);}
+.stage .backdrop-label{position:absolute;bottom:6px;right:10px;color:var(--gold);
+  font-size:.8rem;letter-spacing:1px;opacity:.7}
+.actor{position:absolute;width:44px;height:44px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;font-size:20px;
+  cursor:grab;user-select:none;transition:box-shadow .25s, transform .15s;
+  border:2px solid rgba(255,255,255,.7);background:rgba(0,0,0,.5);color:#fff}
+.actor:active{cursor:grabbing;transform:scale(1.08)}
+.actor[data-color="a"]{background:rgba(201,162,39,.85);border-color:#fff5c2}
+.actor[data-color="b"]{background:rgba(106,44,143,.85);border-color:#e0c0ff}
+.actor[data-color="c"]{background:rgba(13,74,43,.85);border-color:#b8f0c8}
+.actor .tag{position:absolute;bottom:-20px;left:50%;transform:translateX(-50%);
+  color:#fff;font-size:.72rem;white-space:nowrap;background:rgba(0,0,0,.65);
+  padding:1px 6px;border-radius:6px}
+.prop{position:absolute;width:36px;height:36px;display:flex;align-items:center;justify-content:center;
+  font-size:18px;background:rgba(201,162,39,.15);border:1px dashed var(--gold);border-radius:8px;
+  cursor:grab;user-select:none}
+.stage-tools{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.stage-tools button{padding:7px 14px;font-size:13px}
+
+/* ====== استوديو البروفة ====== */
+.hidden-line{color:transparent;text-shadow:0 0 12px rgba(255,255,255,.35);cursor:pointer}
+.hidden-line:hover{color:transparent;text-shadow:0 0 12px rgba(201,162,39,.7)}
+.revealed-line{color:var(--cream);text-shadow:none;background:rgba(201,162,39,.15);
+  border-radius:6px;padding:0 6px}
+
+/* ====== سجل الإتقان ====== */
+.progress-shell{height:14px;background:rgba(0,0,0,.55);border-radius:10px;overflow:hidden;
+  border:1px solid rgba(201,162,39,.35);margin-top:8px}
+.progress-fill{height:100%;background:linear-gradient(90deg,#e6c757,#c9a227);
+  transition:width .4s ease}
+
+/* ====== النماذج الإضافية ====== */
+.model-tabs{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.model-tabs button{padding:9px 16px;font-size:13px}
+
+/* ====== JSON / سجل / نتيجة ====== */
+.result{margin-top:16px;padding:16px;border-radius:12px;background:rgba(0,0,0,.5);
+  border:1px dashed rgba(201,162,39,.45);line-height:1.9;display:none;white-space:pre-wrap}
+.result.on{display:block}
+
+/* ====== Audio controls ====== */
+.audio-row{display:flex;flex-wrap:wrap;gap:10px;align-items:center;margin-top:8px}
+.audio-row audio{flex:1;min-width:220px}
+
+/* ====== الإخفاء عند الطباعة ====== */
+@media print{
+  body{background:#fff!important;color:#000!important}
+  .curtain,.spot,.no-print,header .sub{display:none!important}
+  .card{background:#fff!important;border:none;box-shadow:none;padding:0;margin:0 0 14px}
+  h1,h2,h3,label{color:#000!important}
+  .script-body{background:#fff!important;color:#000!important;border:none;font-size:12pt}
+  .side-card,.stage-card,.work-card,.chars{page-break-inside:avoid}
+}
+
+/* ====== أدوات إضافية ====== */
+.row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.row.wrap > *{flex:1 1 200px}
+.tiny{font-size:.82rem;opacity:.85}
+.kbd{display:inline-block;background:rgba(0,0,0,.5);border:1px solid rgba(201,162,39,.5);
+  border-radius:6px;padding:1px 8px;font-size:.78rem;color:var(--gold-2);margin:0 3px}
+.fs-small{font-size:14px}
+.fs-med{font-size:16px}
+.fs-large{font-size:19px}
+.fs-xl{font-size:22px}
+.script-body.fs-small{font-size:.95rem}
+.script-body.fs-med{font-size:1.05rem}
+.script-body.fs-large{font-size:1.2rem}
+.script-body.fs-xl{font-size:1.35rem}
+</style>
+</head>
+<body class="mode-velvet fs-med show-subtext hide-didascalie">
+
+<div class="curtain"></div>
+<div class="spot" id="spot"></div>
+
+<header>
+  <h1>🎭 الخزانة المسرحية</h1>
+  <div class="sub">منصة دراماتورجية احترافية · نص · إخراج · بروفة · تصدير</div>
+</header>
+
+<div class="container">
+
+<!-- ═══════════════════════════════════════════════════════════
+     ① اختيار النموذج المسرحي
+     ═══════════════════════════════════════════════════════════ -->
+<section class="card no-print">
+  <h2>📚 الخزانة <span class="badge">اختر النص</span></h2>
+  <div class="model-tabs" id="modelTabs">
+    <button data-model="shadows" class="active-btn">🌇 ظلال الغروب في محطة الانتظار</button>
+    <button data-model="trial">⚖️ محاكمة الكلمات: في حضرة أبي الفوارس</button>
+    <button data-model="mirror">🪞 مرآة لعين واحدة (مونودراما)</button>
+  </div>
+  <p class="tiny">النص الرئيسي: مسرح فلسفي معاصر في ثلاثة مشاهد متصاعدة البناء الأرسطي (التمهيد · التعقيد · الذروة والتطهير).</p>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ② بطاقة العمل والشخصيات
+     ═══════════════════════════════════════════════════════════ -->
+<section class="card">
+  <h2>📇 بطاقة العمل والشخصيات</h2>
+  <div class="work-card">
+    <div class="work-meta" id="workMeta"></div>
+    <div class="chars" id="charsGrid"></div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ③ أدوات العرض
+     ═══════════════════════════════════════════════════════════ -->
+<section class="card no-print">
+  <h2>🎛️ أدوات العرض</h2>
+  <div class="row wrap">
+    <div>
+      <label>نمط القراءة</label>
+      <select id="modeSelect" onchange="setMode(this.value)">
+        <option value="velvet">🎭 مخملي داكن</option>
+        <option value="parchment">📜 ورق مخطوطات قديم</option>
+        <option value="print">🖨️ طباعي أبيض</option>
+      </select>
+    </div>
+    <div>
+      <label>حجم الخط</label>
+      <select id="fsSelect" onchange="setFontSize(this.value)">
+        <option value="fs-small">صغير</option>
+        <option value="fs-med" selected>متوسط</option>
+        <option value="fs-large">كبير</option>
+        <option value="fs-xl">ضخم</option>
+      </select>
+    </div>
+    <div>
+      <label>الإرشادات المسرحية</label>
+      <button class="ghost" id="toggleDid" onclick="toggleDidascalie()">👁️ إظهار / إخفاء</button>
+    </div>
+    <div>
+      <label>النوايا الباطنية (Subtext)</label>
+      <button class="ghost" id="toggleSub" onclick="toggleSubtext()">🧠 إظهار / إخفاء</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ④ النص المسرحي + الأدوات الجانبية
+     ═══════════════════════════════════════════════════════════ -->
+<section class="card">
+  <h2>🎬 النص المسرحي <span class="badge" id="currentModelName">ظلال الغروب</span></h2>
+
+  <div class="script-shell">
+    <div id="scriptBody" class="script-body fs-med"></div>
+
+    <div>
+      <!-- استوديو البروفة -->
+      <div class="side-card no-print">
+        <h3>🎙️ استوديو البروفة والتلقين</h3>
+        <label>اختر الشخصية للتلقين</label>
+        <select id="rehearseChar" onchange="refreshRehearsal()"></select>
+        <div class="row">
+          <button class="sm ghost" onclick="startRehearsal()">▶ بدء البروفة</button>
+          <button class="sm secondary" onclick="revealAll()">👁️ كشف الكل</button>
+          <button class="sm danger" onclick="stopRehearsal()">⏹ إنهاء</button>
+        </div>
+        <div id="rehearsalPanel" class="tiny" style="margin-top:10px"></div>
+      </div>
+
+      <!-- الأجواء الصوتية -->
+      <div class="side-card no-print">
+        <h3>🎧 الأجواء الصوتية الحية</h3>
+        <div class="row">
+          <button class="sm" onclick="playAmbience('strikes')">🥁 الضربات الثلاث</button>
+          <button class="sm" onclick="playAmbience('rain')">🌧️ مطر وريح</button>
+          <button class="sm" onclick="playAmbience('clock')">🕰️ ساعة المحطة</button>
+          <button class="sm danger" onclick="stopAmbience()">⏹ إيقاف</button>
+        </div>
+      </div>
+
+      <!-- القراءة الصوتية -->
+      <div class="side-card no-print">
+        <h3>🔊 القراءة الصوتية</h3>
+        <p class="tiny">اختر جملة من النص أو أدخل نصاً هنا للاستماع:</p>
+        <textarea id="ttsInput" class="tiny" style="min-height:70px" placeholder="اكتب أي جملة هنا..."></textarea>
+        <div class="row">
+          <button class="sm" onclick="speakText(document.getElementById('ttsInput').value)">🔊 نطق</button>
+          <button class="sm secondary" onclick="stopSpeak()">⏹ إيقاف</button>
+        </div>
+      </div>
+
+      <!-- مختبر التحرير -->
+      <div class="side-card no-print">
+        <h3>✏️ مختبر التحرير والتصدير</h3>
+        <button class="sm secondary" onclick="editMode()">🖊️ تحرير النص</button>
+        <button class="sm secondary" onclick="copyScript()">📋 نسخ</button>
+        <button class="sm secondary" onclick="exportTxt()">💾 تنزيل TXT</button>
+        <button class="sm secondary" onclick="exportDoc()">📄 تنزيل Word</button>
+        <button class="sm secondary" onclick="window.print()">🖨️ طباعة معتمدة</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⑤ محاكي توزيع الخشبة
+     ═══════════════════════════════════════════════════════════ -->
+<section class="card no-print">
+  <h2>🎯 محاكي توزيع الخشبة والميزانسين</h2>
+  <p class="tiny">اسحب الممثلين والديكور داخل المسرح لتخطيط الحركة. يُحفظ تلقائياً لكل نموذج.</p>
+
+  <div class="stage-card">
+    <div class="stage" id="stage">
+      <span class="backdrop-label">عمق المسرح</span>
+    </div>
+    <div class="stage-tools">
+      <button class="sm" onclick="addActor()">➕ ممثل</button>
+      <button class="sm secondary" onclick="addProp()">➕ ديكور</button>
+      <button class="sm ghost" onclick="resetStage()">🔄 إعادة تعيين</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⑥ تقرير البناء الدرامي
+     ═══════════════════════════════════════════════════════════ -->
+<section class="card no-print">
+  <h2>🔍 تقرير البناء الدرامي</h2>
+  <button onclick="analyze()">تحليل النص الحالي</button>
+  <button class="secondary" onclick="improveDialogue()">💬 بدائل الحوار</button>
+  <div id="result" class="result"></div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════
+     ⑦ حفظ المشروع
+     ═══════════════════════════════════════════════════════════ -->
+<section class="card no-print">
+  <h2>💾 حفظ المشروع</h2>
+  <button onclick="exportJSON()">📤 تصدير المشروع JSON</button>
+  <label style="margin-top:12px">استيراد مشروع JSON</label>
+  <input type="file" id="jsonFile" accept=".json" onchange="importJSON(this)">
+</section>
+
+<footer style="text-align:center;opacity:.7;padding:20px;position:relative;z-index:2">
+  «الخزانة المسرحية» — أداة تعليمية واحترافية لبناء النص المسرحي
+</footer>
+</div>
+
+<script>
+/* ═══════════════════════════════════════════════════════════
+   🎬 البيانات — النصوص والنماذج الثلاثة
+   ═══════════════════════════════════════════════════════════ */
+
+const MODELS = {
+  shadows: {
+    title: "ظلال الغروب في محطة الانتظار",
+    type: "مسرح فلسفي معاصر — مأساة حديثة",
+    duration: "75 دقيقة (ثلاثة مشاهد متصاعدة)",
+    space: "محطة قطار مهجورة عند الغروب",
+    time: "الغروب — لحظة عابرة بين الرحيل والعودة",
+    synopsis: "رجل وامرأة يلتقيان في محطة مهجورة بعد سنوات. الحقائب التي يحملانها ليست للسفر بل للاحتفاظ بالماضي. الحوار يتصاعد من المجاملة إلى الاعتراف، ومن الاعتراف إلى مواجهة الحقيقة.",
+    characters: [
+      { name: "سمير (الرجل)", emoji:"🧥",
+        age:"48 سنة", look:"معطف رمادي قديم، حقيبة جلدية متآكلة",
+        voice:"هادئ، متقطع، يخفت عند الاعتراف",
+        drive:"يهرب من قرار اتخذه قبل عشرين سنة",
+        pos:"يقف في مقدمة الخشبة — يمين",
+        color:"a" },
+      { name: "ليلى (المرأة)", emoji:"🧣",
+        age:"45 سنة", look:"فستان أزرق باهت، وشاح أحمر، حقيبة صغيرة",
+        voice:"حادة، ساخرة، تتحول إلى رجاء مكتوم",
+        drive:"تنتظر اعتذاراً لم يأتِ",
+        pos:"تقف في عمق الخشبة — يسار",
+        color:"b" },
+      { name: "صوت المذيع (الراوي)", emoji:"📻",
+        age:"—", look:"صوت خلف الكواليس فقط",
+        voice:"معدني، رسمي، متكرر",
+        drive:"يعلن مواعيد قطارات لا تأتي",
+        pos:"خلف الكواليس",
+        color:"c" }
+    ],
+    script: [
+      { type:"title", text:"المشهد الأول — أجراس القطار المتأخر" },
+      { type:"did", text:"(الخشبة شبه معتمة. بقعة ضوء ذهبية باهتة على المقعد الخشبي في وسط المسرح. يُسمع صرير حديد بعيد.)" },
+      { type:"line", who:"سمير", color:"a", text:"هل هذا المقعد محجوز؟", sub:"(يسأل رغم أنه يعرف الإجابة — يبحث عن ذريعة للبقاء)" },
+      { type:"line", who:"ليلى", color:"b", text:"كل شيء هنا محجوز... إلا الانتظار.", sub:"(تختبره: هل سيفهم الإشارة؟)" },
+      { type:"did", text:"(صمت طويل. سمير يضع حقيبته على الأرض ببطء شديد.)" },
+      { type:"line", who:"سمير", color:"a", text:"أنا لا أنتظر أحداً...", sub:"(يكذب — ينتظر نفسه)" },
+      { type:"line", who:"ليلى", color:"b", text:"ولا أنا.", sub:"(تنتظر منذ عشرين سنة)" },
+      { type:"did", text:"(يُسمع صوت مذيع المحطة مشوشاً: «القطار المتأخر... لا موعد له.»)" },
+      { type:"line", who:"صوت المذيع", color:"c", text:"القطار المتأخر... لا موعد له." },
+
+      { type:"title", text:"المشهد الثاني — اعترافات تحت المصباح المرتعش" },
+      { type:"did", text:"(المصباح المعلق يرتعش. سمير يفتح حقيبته ببطء. داخلها صور قديمة.)" },
+      { type:"line", who:"ليلى", color:"b", text:"ما زلت تحتفظ بها؟", sub:"(تتظاهر بالبرود، لكن صوتها يرتجف)" },
+      { type:"line", who:"سمير", color:"a", text:"لم أجرؤ على رميها. ولم أجرؤ على النظر إليها.", sub:"(اعتراف أول)" },
+      { type:"line", who:"ليلى", color:"b", text:"مثل رسالتي؟", sub:"(السؤال الذي انتظرت طرحه عشرين سنة)" },
+      { type:"did", text:"(صمت ثقيل. سمير يرفع رأسه لأول مرة.)" },
+      { type:"line", who:"سمير", color:"a", text:"قرأتها. كل يوم. ولم أرد.", sub:"(يُسقط القناع)" },
+      { type:"line", who:"ليلى", color:"b", text:"لماذا؟", sub:"(رجاء مكتوم)" },
+      { type:"line", who:"سمير", color:"a", text:"لأن الرد كان يعني أنني سأعود... وأنا لم أستحق العودة.", sub:"(اعتراف كامل — هذا هو جوهر المسرحية)" },
+
+      { type:"title", text:"المشهد الثالث — صافرة الحقيقة والرحيل" },
+      { type:"did", text:"(تُسمع صافرة قطار قريبة. الضوء يتحول تدريجياً إلى ذهبي قوي. ليلى تنهض.)" },
+      { type:"line", who:"ليلى", color:"b", text:"القطار قادم. هل ستركب؟", sub:"(الاختبار الأخير)" },
+      { type:"line", who:"سمير", color:"a", text:"لا. سأبقى هنا. هذه المحطة أصبحت مكاني.", sub:"(اختيار واعٍ — ليس هروباً بل قبول)" },
+      { type:"line", who:"ليلى", color:"b", text:"إذن سأرحل وحدي.", sub:"(ليست رحيلاً عن الحب بل عن الألم)" },
+      { type:"did", text:"(ترحل. سمير يجلس على المقعد وحيداً. الضوء يضيق على وجهه. الصافرة تعلو.)" },
+      { type:"line", who:"صوت المذيع", color:"c", text:"القطار الأخير... غادر المحطة." }
+    ]
+  },
+
+  trial: {
+    title: "محاكمة الكلمات — في حضرة أبي الفوارس",
+    type: "مسرح شعري تاريخي — محاكمة رمزية",
+    duration: "60 دقيقة (مشهد واحد متصاعد)",
+    space: "قاعة محكمة شعرية — نصفها خشبة ونصفها محراب",
+    time: "زمن لا زمني — بين الأمس والحاضر",
+    synopsis: "شاعر يُحاكم أمام محكمة الكلمات بتهمة «الخيانة العظمى للغة». المحامي يدافع، والمدعي يهاجم، والشاعر صامت. في النهاية تنكشف الحقيقة: من يحاكم اللغة يخون نفسه.",
+    characters: [
+      { name: "أبو الفوارس (الشاعر)", emoji:"🪶",
+        age:"غير محدد", look:"عباءة بيضاء، ديوان في يده، نظرة بعيدة",
+        voice:"ناعم، موزون، يتحدث بالشعر حين يعجز عن النثر",
+        drive:"يؤمن أن الكلمة أمانة لا تُساوم",
+        pos:"في وسط الخشبة — ثابت كالعمود",
+        color:"a" },
+      { name: "المدعي العام", emoji:"📜",
+        age:"50", look:"بدلة سوداء، ملف ضخم، صوت حاد",
+        voice:"معدني، حاد، لا يتوقف",
+        drive:"يريد إدانة الشاعر لإثبات سلطة القوانين على الفن",
+        pos:"يمين الخشبة — يتحرك كثيراً",
+        color:"b" },
+      { name: "المحامي", emoji:"⚖️",
+        age:"45", look:"عباءة قضائية، ينظر إلى الشاعر لا إلى القاضي",
+        voice:"هادئ، حكيم، يوزن الكلمات",
+        drive:"يعرف أن القضية خاسرة لكنه يدافع لأن الدفاع واجب",
+        pos:"يسار الخشبة — يتحرك ببطء",
+        color:"c" }
+    ],
+    script: [
+      { type:"title", text:"الجلسة الوحيدة — محاكمة الكلمات" },
+      { type:"did", text:"(القاعة معتمة. ثلاثة كراسي مرتفعة. المدعي يقف بملف ضخم. المحامي بجانب الشاعر.)" },
+      { type:"line", who:"المدعي", color:"b", text:"أيها القاضي، هذا الرجل خان اللغة. كتب ما لا يُقال، وقال ما لا يُكتب.", sub:"(يفتح ملفه بضجيج)" },
+      { type:"line", who:"المحامي", color:"c", text:"اعتراض. الكلمة ليست سجناً، واللغة ليست قانوناً.", sub:"(يعرف أن الاعتراض لن يُقبل)" },
+      { type:"line", who:"أبو الفوارس", color:"a", text:"دعوه يتكلم... أنا لا أدافع عن نفسي. الشعر لا يُدافع عنه، يُقرأ.", sub:"(هذه الجملة هي ذروة المشهد)" },
+      { type:"did", text:"(صمت. المدعي يتوقف. المحامي يخفض رأسه. القاضي لا يظهر — صوت فقط.)" },
+      { type:"line", who:"القاضي", color:"c", text:"المحكمة تطلب من الشاعر أن يقرأ ما كتبه... بصوت مسموع." },
+      { type:"line", who:"أبو الفوارس", color:"a", text:"سأقرأ... لكن لا أحد سيبقى في القاعة بعد القراءة.", sub:"(يبتسم — يعرف قدر الكلمة)" },
+      { type:"did", text:"(يقرأ بصوت منخفض. الأضواء تخبو تدريجياً. تسمع فقط صوته.)" }
+    ]
+  },
+
+  mirror: {
+    title: "مرآة لعين واحدة",
+    type: "مونودراما — مسرح فردي",
+    duration: "45 دقيقة",
+    space: "غرفة صغيرة — مرآة، كرسي، نافذة مظلمة",
+    time: "منتصف الليل",
+    synopsis: "امرأة تجلس أمام مرآتها. تحاور انعكاسها. في المرآة ترى نسخة أخرى منها — النسخة التي كانت قبل الحادث. الحوار بين الاثنتين يكشف الحقيقة: الحادث لم يكن حادثاً.",
+    characters: [
+      { name: "نور (الحاضرة)", emoji:"🕯️",
+        age:"35", look:"قميص أبيض، شعر مهمل، عين واحدة مغطاة بضمادة",
+        voice:"هادئ في البداية، ثم يرتجف، ثم يصرخ",
+        drive:"تريد أن تُغفر لنفسها",
+        pos:"جالسة أمام المرآة — طوال المشهد",
+        color:"a" },
+      { name: "نور (الانعكاس)", emoji:"🪞",
+        age:"25", look:"كما كانت قبل الحادث — شعر مصفف، عينان سليمتان",
+        voice:"ساخر، حنون، ثم غاضب",
+        drive:"تريد أن تُفهم، لا أن تُشفق عليها",
+        pos:"خلف المرآة — صوت فقط",
+        color:"b" }
+    ],
+    script: [
+      { type:"title", text:"الليلة الوحيدة — مرآة لعين واحدة" },
+      { type:"did", text:"(نور جالسة. المرآة أمامها. ضوء شمعة فقط. العين المغطاة بضمادة بيضاء.)" },
+      { type:"line", who:"نور", color:"a", text:"هل ما زلت هناك؟", sub:"(تخاطب انعكاسها — تخاف من الجواب)" },
+      { type:"line", who:"الانعكاس", color:"b", text:"أنا دائماً هنا. أنتِ التي لم تكوني.", sub:"(سخرية حزينة)" },
+      { type:"line", who:"نور", color:"a", text:"لماذا عدتِ؟", sub:"(تعرف الجواب)" },
+      { type:"line", who:"الانعكاس", color:"b", text:"لأسألك سؤالاً واحداً: هل كان حادثاً؟", sub:"(الصمت بعد هذا السؤال هو ذروة المسرحية)" },
+      { type:"did", text:"(صمت طويل. نور ترفع يدها إلى الضمادة.)" },
+      { type:"line", who:"نور", color:"a", text:"لا. لم يكن حادثاً.", sub:"(اعتراف نهائي)" },
+      { type:"line", who:"الانعكاس", color:"b", text:"شكراً. الآن يمكنني الرحيل.", sub:"(تختفي من المرآة — الشمعة تنطفئ.)" }
+    ]
+  }
+};
+
+/* ═══════════════════════════════════════════════════════════
+   💾 الحالة
+   ═══════════════════════════════════════════════════════════ */
+
+let currentModelKey = 'shadows';
+let rehearsalActive = false;
+let rehearsalChar = null;
+let rehearsalRevealed = new Set();
+let ambienceCtx = null;
+let ambienceNodes = [];
+let ambienceTimer = null;
+let stageState = JSON.parse(localStorage.getItem('th_stage') || '{}');
+
+const $ = id => document.getElementById(id);
+
+/* ═══════════════════════════════════════════════════════════
+   🎭 عرض النموذج
+   ═══════════════════════════════════════════════════════════ */
+
+function renderModel(key){
+  currentModelKey = key;
+  const model = MODELS[key];
+
+  // تحديث الاسم في العنوان
+  $('currentModelName').textContent = model.title;
+
+  // بطاقة العمل
+  $('workMeta').innerHTML = `
+    <h3 style="margin-top:0">${model.title}</h3>
+    <dl>
+      <dt>النوع</dt><dd>${model.type}</dd>
+      <dt>المدة التقديرية</dt><dd>${model.duration}</dd>
+      <dt>الفضاء المسرحي</dt><dd>${model.space}</dd>
+      <dt>الزمان</dt><dd>${model.time}</dd>
+      <dt>الملخص</dt><dd>${model.synopsis}</dd>
+    </dl>
+  `;
+
+  // الشخصيات
+  $('charsGrid').innerHTML = model.characters.map(c => `
+    <div class="char">
+      <h4>${c.emoji} ${c.name}</h4>
+      <p><strong>العمر:</strong> ${c.age}</p>
+      <p><strong>المظهر:</strong> ${c.look}</p>
+      <p class="voice"><strong>النبرة:</strong> ${c.voice}</p>
+      <p class="drive"><strong>الدافع:</strong> ${c.drive}</p>
+      <p class="pos"><strong>التموضع:</strong> ${c.pos}</p>
+    </div>
+  `).join('');
+
+  // النص
+  renderScript();
+
+  // قائمة شخصيات البروفة
+  $('rehearseChar').innerHTML = '<option value="">— اختر شخصية —</option>' +
+    model.characters.map(c => `<option value="${c.name}">${c.emoji} ${c.name}</option>`).join('');
+
+  // إعادة تعيين البروفة
+  stopRehearsal();
+
+  // الخشبة
+  renderStage();
+}
+
+function renderScript(){
+  const model = MODELS[currentModelKey];
+  const html = model.script.map((item, idx) => {
+    if(item.type === 'title')
+      return `<span class="scene-title">${item.text}</span>`;
+    if(item.type === 'did')
+      return `<span class="didascalie">${item.text}</span>`;
+    if(item.type === 'line'){
+      const isHidden = rehearsalActive && rehearsalChar === item.who && !rehearsalRevealed.has(idx);
+      const cls = isHidden ? 'hidden-line' : (rehearsalRevealed.has(idx) ? 'revealed-line' : '');
+      return `<span class="line character-${item.color}" data-idx="${idx}" data-who="${item.who}">
+        <span class="who">${item.who}:</span>
+        <span class="text ${cls}" onclick="revealLine(${idx})">${item.text}</span>
+        ${item.sub ? `<span class="sub">🧠 ${item.sub}</span>` : ''}
+      </span>`;
+    }
+    return '';
+  }).join('\n');
+  $('scriptBody').innerHTML = html;
+}
+
+function revealLine(idx){
+  if(!rehearsalActive) return;
+  rehearsalRevealed.add(idx);
+  renderScript();
+  updateRehearsalProgress();
+}
+
+function revealAll(){
+  if(!rehearsalActive) return;
+  MODELS[currentModelKey].script.forEach((item, idx) => {
+    if(item.type === 'line' && item.who === rehearsalChar) rehearsalRevealed.add(idx);
+  });
+  renderScript();
+  updateRehearsalProgress();
+}
+
+function updateRehearsalProgress(){
+  if(!rehearsalActive){
+    $('rehearsalPanel').innerHTML = '';
+    return;
+  }
+  const model = MODELS[currentModelKey];
+  const total = model.script.filter((i,idx) => i.type==='line' && i.who === rehearsalChar).length;
+  const revealed = rehearsalRevealed.size;
+  const pct = total ? Math.round((revealed / total) * 100) : 0;
+  $('rehearsalPanel').innerHTML = `
+    <div><strong>شخصية البروفة:</strong> ${rehearsalChar}</div>
+    <div><strong>الجمل الكلية:</strong> ${total}</div>
+    <div><strong>تم كشفها:</strong> ${revealed} (${pct}%)</div>
+    <div class="progress-shell"><div class="progress-fill" style="width:${pct}%"></div></div>
+    <p style="margin-top:8px">💡 الجمل المخفية تظهر كضباب. اضغط عليها لكشفها.</p>
+  `;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   🎙️ البروفة
+   ═══════════════════════════════════════════════════════════ */
+
+function startRehearsal(){
+  rehearsalChar = $('rehearseChar').value;
+  if(!rehearsalChar){ alert('اختر شخصية أولاً.'); return; }
+  rehearsalActive = true;
+  rehearsalRevealed = new Set();
+  renderScript();
+  updateRehearsalProgress();
+}
+
+function refreshRehearsal(){
+  if(rehearsalActive) startRehearsal();
+}
+
+function stopRehearsal(){
+  rehearsalActive = false;
+  rehearsalChar = null;
+  rehearsalRevealed = new Set();
+  renderScript();
+  updateRehearsalProgress();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   🎛️ الأدوات الجانبية
+   ═══════════════════════════════════════════════════════════ */
+
+function setMode(v){
+  document.body.className = document.body.className.replace(/mode-\S+/g, '');
+  document.body.classList.add('mode-' + v);
+  if($('fsSelect').value) document.body.classList.add($('fsSelect').value);
+  if(document.body.classList.contains('show-subtext')) document.body.classList.add('show-subtext');
+  if(document.body.classList.contains('hide-didascalie')) document.body.classList.add('hide-didascalie');
+}
+
+function setFontSize(v){
+  const cls = ['fs-small','fs-med','fs-large','fs-xl'];
+  cls.forEach(c => { document.body.classList.remove(c); $('scriptBody').classList.remove(c); });
+  document.body.classList.add(v);
+  $('scriptBody').classList.add(v);
+}
+
+function toggleDidascalie(){
+  document.body.classList.toggle('hide-didascalie');
+  $('toggleDid').textContent = document.body.classList.contains('hide-didascalie')
+    ? '👁️ إظهار الإرشادات' : '🙈 إخفاء الإرشادات';
+}
+
+function toggleSubtext(){
+  document.body.classList.toggle('show-subtext');
+  $('toggleSub').textContent = document.body.classList.contains('show-subtext')
+    ? '🧠 إخفاء النوايا' : '🧠 إظهار النوايا';
+}
+
+/* ═══════════════════════════════════════════════════════════
+   🎧 الأجواء الصوتية (Web Audio)
+   ═══════════════════════════════════════════════════════════ */
+
+function stopAmbience(){
+  if(ambienceTimer) clearTimeout(ambienceTimer);
+  ambienceTimer = null;
+  ambienceNodes.forEach(n => { try { n.stop(); } catch(e){} });
+  ambienceNodes = [];
+  if(ambienceCtx){ try { ambienceCtx.close(); } catch(e){} ambienceCtx = null; }
+}
+
+function playAmbience(kind){
+  stopAmbience();
+  ambienceCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const ctx = ambienceCtx;
+
+  if(kind === 'strikes'){
+    // ثلاث ضربات مسرحية
+    [0, 0.55, 1.1].forEach((t, i) => {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'sine';
+      o.frequency.setValueAtTime(80, ctx.currentTime + t);
+      o.frequency.exponentialRampToValueAtTime(40, ctx.currentTime + t + 0.35);
+      g.gain.setValueAtTime(0.4, ctx.currentTime + t);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + t + 0.5);
+      o.connect(g); g.connect(ctx.destination);
+      o.start(ctx.currentTime + t); o.stop(ctx.currentTime + t + 0.5);
+      ambienceNodes.push(o);
+    });
+  }
+  else if(kind === 'rain'){
+    // مطر + ريح (نويز + فلتر)
+    const bufSize = 2 * ctx.sampleRate;
+    const buf = ctx.createBuffer(1, bufSize, ctx.sampleRate);
+    const data = buf.getChannelData(0);
+    for(let i=0;i<bufSize;i++) data[i] = Math.random()*2-1;
+    const noise = ctx.createBufferSource();
+    noise.buffer = buf; noise.loop = true;
+
+    const lp = ctx.createBiquadFilter();
+    lp.type = 'lowpass'; lp.frequency.value = 900;
+
+    const hp = ctx.createBiquadFilter();
+    hp.type = 'highpass'; hp.frequency.value = 200;
+
+    const g = ctx.createGain(); g.gain.value = 0.18;
+
+    noise.connect(hp); hp.connect(lp); lp.connect(g); g.connect(ctx.destination);
+    noise.start();
+    ambienceNodes.push(noise);
+
+    // تمويج بطيء للريح
+    const lfo = ctx.createOscillator();
+    const lfoG = ctx.createGain();
+    lfo.frequency.value = 0.15; lfoG.gain.value = 0.06;
+    lfo.connect(lfoG); lfoG.connect(g.gain);
+    lfo.start();
+    ambienceNodes.push(lfo);
+  }
+  else if(kind === 'clock'){
+    // دقات ساعة المحطة
+    const tick = () => {
+      if(!ambienceCtx) return;
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.type = 'square';
+      o.frequency.value = 1200;
+      g.gain.setValueAtTime(0.15, ctx.currentTime);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.06);
+      o.connect(g); g.connect(ctx.destination);
+      o.start(); o.stop(ctx.currentTime + 0.07);
+      ambienceNodes.push(o);
+      ambienceTimer = setTimeout(tick, 1000);
+    };
+    tick();
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════
+   🔊 القراءة الصوتية
+   ═══════════════════════════════════════════════════════════ */
+
+let currentUtterance = null;
+function speakText(text){
+  if(!text) return;
+  stopSpeak();
+  const u = new SpeechSynthesisUtterance(text);
+  u.lang = 'ar-SA';
+  u.rate = 0.95;
+  u.pitch = 1;
+  currentUtterance = u;
+  speechSynthesis.speak(u);
+}
+function stopSpeak(){
+  if(speechSynthesis.speaking) speechSynthesis.cancel();
+  currentUtterance = null;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   🎯 محاكي الخشبة
+   ═══════════════════════════════════════════════════════════ */
+
+let stageDrag = null;
+
+function renderStage(){
+  const stage = $('stage');
+  // احتفظ بالعناصر الحالية إن وُجدت
+  const state = stageState[currentModelKey] || { actors: [], props: [] };
+  stage.innerHTML = '<span class="backdrop-label">عمق المسرح</span>';
+
+  state.actors.forEach(a => {
+    const d = document.createElement('div');
+    d.className = 'actor';
+    d.dataset.color = a.color || 'a';
+    d.dataset.id = a.id;
+    d.style.left = a.x + '%';
+    d.style.top = a.y + '%';
+    d.innerHTML = `${a.emoji || '🎭'}<span class="tag">${a.name || ''}</span>`;
+    d.addEventListener('mousedown', startDragActor);
+    stage.appendChild(d);
+  });
+
+  state.props.forEach(p => {
+    const d = document.createElement('div');
+    d.className = 'prop';
+    d.dataset.id = p.id;
+    d.style.left = p.x + '%';
+    d.style.top = p.y + '%';
+    d.textContent = p.emoji || '🪑';
+    d.addEventListener('mousedown', startDragProp);
+    stage.appendChild(d);
+  });
+}
+
+function getStageState(){
+  if(!stageState[currentModelKey]) stageState[currentModelKey] = { actors: [], props: [] };
+  return stageState[currentModelKey];
+}
+
+function addActor(){
+  const model = MODELS[currentModelKey];
+  const state = getStageState();
+  const c = model.characters[state.actors.length % model.characters.length];
+  state.actors.push({
+    id: 'a' + Date.now(),
+    name: c.name.split(' ')[0],
+    emoji: c.emoji,
+    color: c.color || 'a',
+    x: 20 + Math.random() * 60,
+    y: 40 + Math.random() * 40
+  });
+  saveStage();
+  renderStage();
+}
+
+function addProp(){
+  const state = getStageState();
+  state.props.push({
+    id: 'p' + Date.now(),
+    emoji: ['🪑','🚪','💡','📻','🌳','📦'][Math.floor(Math.random()*6)],
+    x: 20 + Math.random() * 60,
+    y: 30 + Math.random() * 50
+  });
+  saveStage();
+  renderStage();
+}
+
+function startDragActor(e){
+  e.preventDefault();
+  const el = e.currentTarget;
+  stageDrag = { el, id: el.dataset.id, kind: 'actor' };
+  document.addEventListener('mousemove', onDrag);
+  document.addEventListener('mouseup', endDrag);
+}
+function startDragProp(e){
+  e.preventDefault();
+  const el = e.currentTarget;
+  stageDrag = { el, id: el.dataset.id, kind: 'prop' };
+  document.addEventListener('mousemove', onDrag);
+  document.addEventListener('mouseup', endDrag);
+}
+function onDrag(e){
+  if(!stageDrag) return;
+  const stage = $('stage');
+  const rect = stage.getBoundingClientRect();
+  let x = ((e.clientX - rect.left) / rect.width) * 100;
+  let y = ((e.clientY - rect.top) / rect.height) * 100;
+  x = Math.max(2, Math.min(94, x));
+  y = Math.max(5, Math.min(90, y));
+  stageDrag.el.style.left = x + '%';
+  stageDrag.el.style.top = y + '%';
+
+  const state = getStageState();
+  const arr = stageDrag.kind === 'actor' ? state.actors : state.props;
+  const item = arr.find(i => i.id === stageDrag.id);
+  if(item){ item.x = x; item.y = y; }
+}
+function endDrag(){
+  if(stageDrag){ saveStage(); }
+  stageDrag = null;
+  document.removeEventListener('mousemove', onDrag);
+  document.removeEventListener('mouseup', endDrag);
+}
+function saveStage(){
+  localStorage.setItem('th_stage', JSON.stringify(stageState));
+}
+function resetStage(){
+  if(!confirm('إعادة تعيين توزيع الخشبة لهذا النموذج؟')) return;
+  delete stageState[currentModelKey];
+  saveStage();
+  renderStage();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   🔍 التحليل الدرامي
+   ═══════════════════════════════════════════════════════════ */
+
+function getScriptText(){
+  const model = MODELS[currentModelKey];
+  return model.script.map(i => i.text).join('\n');
+}
+
+function analyze(){
+  const text = getScriptText();
+  const out = $('result');
+  const words = text.split(/\s+/).length;
+  const lines = MODELS[currentModelKey].script.filter(i => i.type === 'line');
+  const dids = MODELS[currentModelKey].script.filter(i => i.type === 'did');
+  const chars = new Set(lines.map(l => l.who));
+  const charsCount = chars.size;
+  const subs = MODELS[currentModelKey].script.filter(i => i.sub).length;
+
+  const has = t => new RegExp(t).test(text);
+  const stages = [];
+  stages.push(has("المشهد الأول|المكان|الزمان") ? "✔ العرض: التمهيد قائم." : "✘ العرض: أضف تمهيداً.");
+  stages.push(has("لكن|لماذا|مشكلة|اعتراف|صراع") ? "✔ الصراع: قائم." : "✘ الصراع: غير ظاهر.");
+  stages.push(has("الحقيقة|فجأة|اكتشف|قرر|سؤال") ? "✔ الذروة: قائمة." : "✘ الذروة: غير واضحة.");
+  stages.push(has("رحيل|نهاية|غادر|سلام|اعتذار") ? "✔ الحل: قائم." : "✘ الحل: غير واضح.");
+
+  const score = stages.filter(s => s.startsWith('✔')).length;
+  const verdict = score === 4 ? '🌟 بناء مكتمل' : score === 3 ? '👍 جيد' : score === 2 ? '⚠️ ضعيف' : '❌ غير مكتمل';
+
+  out.classList.add('on');
+  out.innerHTML = `<strong>📊 إحصاءات:</strong>
+الكلمات: ${words} · الجمل الحوارية: ${lines.length} · الإرشادات: ${dids.length}
+الشخصيات: ${charsCount} · النوايا الباطنية: ${subs}
+
+<strong>🎭 البناء الدرامي:</strong>
+${stages.join('\n')}
+
+<strong>📈 التقييم:</strong> ${verdict}`;
+}
+
+function improveDialogue(){
+  const model = MODELS[currentModelKey];
+  const lines = model.script.filter(i => i.type === 'line');
+  const out = $('result');
+  let html = `<strong>💬 بدائل الحوار (اقتراحات):</strong>\n\n`;
+  const longLines = lines.filter(l => l.text.split(/\s+/).length > 10).slice(0, 3);
+  if(!longLines.length){ html += 'لا توجد جمل طويلة.'; }
+  longLines.forEach((l, i) => {
+    const words = l.text.split(/\s+/);
+    const mid = Math.ceil(words.length / 2);
+    const p1 = words.slice(0, mid).join(' ');
+    const p2 = words.slice(mid).join(' ');
+    html += `${i+1}) الأصل (${l.who}): «${l.text}»\n`;
+    html += `   بديل:\n   ${l.who}: ${p1}...\n   شخصية أخرى: ...${p2}\n\n`;
+  });
+  out.classList.add('on');
+  out.innerHTML = html;
+}
+
+/* ═══════════════════════════════════════════════════════════
+   ✏️ مختبر التحرير
+   ═══════════════════════════════════════════════════════════ */
+
+function editMode(){
+  const model = MODELS[currentModelKey];
+  const text = model.script.map(i => {
+    if(i.type === 'title') return `### ${i.text}`;
+    if(i.type === 'did') return `(${i.text})`;
+    if(i.type === 'line') return `${i.who}: ${i.text}${i.sub ? ` [${i.sub}]` : ''}`;
+    return '';
+  }).join('\n\n');
+
+  const newText = prompt('حرّر النص (استخدم ### للعناوين، () للإرشادات، اسم: جملة للحوار):', text);
+  if(newText === null) return;
+
+  // إعادة تحويل النص إلى عناصر
+  const lines = newText.split('\n');
+  const newScript = [];
+  lines.forEach(l => {
+    l = l.trim();
+    if(!l) return;
+    if(l.startsWith('### ')) newScript.push({ type:'title', text: l.slice(4) });
+    else if(l.startsWith('(') && l.endsWith(')')) newScript.push({ type:'did', text: l.slice(1,-1) });
+    else {
+      const m = l.match(/^([^:：]+)[：:]\s*(.+)$/);
+      if(m){
+        let t = m[2]; let sub = '';
+        const sm = t.match(/\[(.*)\]$/);
+        if(sm){ sub = sm[1]; t = t.replace(/\s*\[.*\]$/, ''); }
+        newScript.push({ type:'line', who: m[1].trim(), color:'a', text: t, sub: sub || undefined });
+      } else {
+        newScript.push({ type:'line', who:'ملاحظة', color:'a', text: l });
+      }
+    }
+  });
+  model.script = newScript;
+  renderScript();
+  alert('تم تحديث النص. (لن يُحفظ بعد إغلاق الصفحة إلا إذا صدّرت المشروع JSON)');
+}
+
+function getPlainText(){
+  const model = MODELS[currentModelKey];
+  return model.title + '\n\n' +
+    model.script.map(i => {
+      if(i.type === 'title') return '\n══ ' + i.text + ' ══\n';
+      if(i.type === 'did') return '(' + i.text + ')';
+      if(i.type === 'line') return i.who + ': ' + i.text;
+      return '';
+    }).join('\n');
+}
+
+function copyScript(){
+  navigator.clipboard.writeText(getPlainText()).then(
+    () => alert('تم نسخ النص.'),
+    () => alert('تعذر النسخ.')
+  );
+}
+
+function exportTxt(){
+  const blob = new Blob([getPlainText()], { type:'text/plain;charset=utf-8' });
+  downloadBlob(blob, MODELS[currentModelKey].title + '.txt');
+}
+
+function exportDoc(){
+  const text = getPlainText().replace(/\n/g, '<br>');
+  const html = `<html dir="rtl"><head><meta charset="UTF-8"></head>
+    <body style="font-family:Amiri,serif;text-align:right;line-height:2">
+    <h1 style="color:#8b6914">${MODELS[currentModelKey].title}</h1>
+    <p>${text}</p></body></html>`;
+  const blob = new Blob(['\ufeff', html], { type:'application/msword' });
+  downloadBlob(blob, MODELS[currentModelKey].title + '.doc');
+}
+
+function downloadBlob(blob, name){
+  const a = document.createElement('a');
+  a.href = URL.createObjectURL(blob);
+  a.download = name;
+  a.click();
+}
+
+/* ═══════════════════════════════════════════════════════════
+   💾 JSON
+   ═══════════════════════════════════════════════════════════ */
+
+function exportJSON(){
+  const project = {
+    models: MODELS,
+    current: currentModelKey,
+    stage: stageState,
+    savedAt: new Date().toISOString()
+  };
+  const blob = new Blob([JSON.stringify(project, null, 2)], { type:'application/json' });
+  downloadBlob(blob, 'الخزانة_المسرحية.json');
+}
+
+function importJSON(input){
+  const file = input.files[0]; if(!file) return;
+  const r = new FileReader();
+  r.onload = e => {
+    try{
+      const p = JSON.parse(e.target.result);
+      if(p.models) Object.assign(MODELS, p.models);
+      if(p.stage) stageState = p.stage;
+      if(p.current && MODELS[p.current]) currentModelKey = p.current;
+      saveStage();
+      renderModel(currentModelKey);
+      alert('تم استيراد المشروع.');
+    }catch(err){ alert('ملف غير صالح.'); }
+  };
+  r.readAsText(file);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   🔌 ربط الأحداث
+   ═══════════════════════════════════════════════════════════ */
+
+document.querySelectorAll('#modelTabs button').forEach(b => {
+  b.onclick = () => {
+    document.querySelectorAll('#modelTabs button').forEach(x => x.classList.remove('active-btn'));
+    b.classList.add('active-btn');
+    renderModel(b.dataset.model);
+  };
+});
+
+/* ═══════════════════════════════════════════════════════════
+   🚀 التهيئة
+   ═══════════════════════════════════════════════════════════ */
+
+renderModel('shadows');
+setMode('velvet');
+setFontSize('fs-med');
+
+console.log('%c🎭 الخزانة المسرحية جاهزة', 'color:#c9a227;font-size:15px;font-weight:bold;background:#1a0a12;padding:8px 14px;border-radius:20px');
+</script>
+</body>
+</html>
